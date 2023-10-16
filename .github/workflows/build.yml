@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     name: 🏠 Build
     steps:
-      - name: 🧹 Cancel previous redundant builds
+      - name: 🧹 Cancel previus redundant builds
         uses: styfle/cancel-workflow-action@0.9.1
         with:
           access_token: ${{ github.token }}
