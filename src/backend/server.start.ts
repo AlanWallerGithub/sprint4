@@ -2,6 +2,7 @@ import { App } from "./App";
 
 try {
 	void new App().start();
+
 } catch (e) {
 	process.exit(1);
 }

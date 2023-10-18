@@ -3,6 +3,17 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 
+//Mis métodos toDo del Application Layer:
+
+
+//****//
+import {addTodoApp} from './todoListHexagonal/applicationLayer/addTodoApp'
+import {deleteTodoApp} from './todoListHexagonal/applicationLayer/deleteTodoApp'
+import {updateTodoApp} from './todoListHexagonal/applicationLayer/updateTodoApp'
+import {showTodoApp} from './todoListHexagonal/applicationLayer/showTodoApp'
+//****//
+
+
 export class Server {
 	private readonly express: express.Express;
 	private readonly port: string;
@@ -14,6 +25,14 @@ export class Server {
 		this.express.use(cors());
 		this.express.use(json());
 		this.express.use(urlencoded({ extended: true }));
+	}
+
+	ejecutarHexagono(){
+		this.express.get('/', showTodoApp);
+		this.express.post('/', addTodoApp);
+		this.express.put('/', updateTodoApp);
+		this.express.delete('/', deleteTodoApp);
+
 	}
 
 	async listen(): Promise<void> {
