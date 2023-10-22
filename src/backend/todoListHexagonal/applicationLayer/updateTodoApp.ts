@@ -1,7 +1,24 @@
 import {todoList} from '../domainLayer/toDo';
 
-export const updateTodoApp = (req, res) => {
-   
+type bodyType = {
+  username: string,
+  task: string,
+  completado: boolean
+}
+
+interface requestInterface {
+  body: bodyType;
+}
+
+
+interface responseInterface {
+  send: Function;
+  end:Function;
+}
+
+export const updateTodoApp = (req: requestInterface, res: responseInterface) => {
+
+  if (todoList.length > 0){
     let salirDelLoop = false;
 
     let i = 0;
@@ -11,7 +28,7 @@ export const updateTodoApp = (req, res) => {
         if (todoList[i].completado === false){
            todoList[i].completado = true;
            salirDelLoop = true;
-           res.end(`Se ha marcado la tarea ${todoList[i].task} como completada. Aquí está la lista entera de tareas: ${JSON.stringify(todoList, undefined, 5)}`)
+           res.end(`${JSON.stringify(todoList, undefined, 5)}`)
         }else{
           salirDelLoop = true;
           res.end("Esta tarea ya está completada, por favor elija otra")
@@ -24,5 +41,12 @@ export const updateTodoApp = (req, res) => {
       }
       i++;
     }
+  }else{
+    // Si no existe ninguna tarea en la toDo list
+
+    res.end("No existe ninguna tarea en la toDo list")
+  }
+   
+    
 
   }

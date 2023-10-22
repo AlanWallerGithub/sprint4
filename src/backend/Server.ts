@@ -3,7 +3,7 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 
-//Mis métodos toDo del Application Layer:
+//Mis métodos toDo del Application Layer del toDo:
 
 
 //****//
@@ -12,6 +12,16 @@ import {deleteTodoApp} from './todoListHexagonal/applicationLayer/deleteTodoApp'
 import {updateTodoApp} from './todoListHexagonal/applicationLayer/updateTodoApp'
 import {showTodoApp} from './todoListHexagonal/applicationLayer/showTodoApp'
 //****//
+
+// Mis métodos de gestión de usuarios del Application Layer del usuario:
+
+
+//****//
+import {createUser} from '../user/applicationLayer/createUser';
+import {authenticateUser} from '../user/applicationLayer/authenticateUser';
+//****//
+
+
 
 
 export class Server {
@@ -28,10 +38,12 @@ export class Server {
 	}
 
 	ejecutarHexagono(){
-		this.express.get('/', showTodoApp);
-		this.express.post('/', addTodoApp);
-		this.express.put('/', updateTodoApp);
-		this.express.delete('/', deleteTodoApp);
+		this.express.post('/register',createUser)
+	
+		this.express.get('/', authenticateUser, showTodoApp);
+		this.express.post('/', authenticateUser, addTodoApp);
+		this.express.put('/', authenticateUser, updateTodoApp);
+		this.express.delete('/', authenticateUser, deleteTodoApp);
 
 	}
 

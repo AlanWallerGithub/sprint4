@@ -1,3 +1,7 @@
 
+interface toDoInterface {
+    task: string,
+    completado: boolean
+}
 
-export let todoList: object[] = [];
+export let todoList: toDoInterface[] = [];
