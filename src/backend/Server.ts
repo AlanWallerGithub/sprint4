@@ -3,26 +3,18 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 
-//Mis métodos toDo del Application Layer del toDo:
-
-
+import { authenticateUser } from "../user/applicationLayer/authenticateUser";
 //****//
-import {addTodoApp} from './todoListHexagonal/applicationLayer/addTodoApp'
-import {deleteTodoApp} from './todoListHexagonal/applicationLayer/deleteTodoApp'
-import {updateTodoApp} from './todoListHexagonal/applicationLayer/updateTodoApp'
-import {showTodoApp} from './todoListHexagonal/applicationLayer/showTodoApp'
-//****//
-
 // Mis métodos de gestión de usuarios del Application Layer del usuario:
-
-
 //****//
-import {createUser} from '../user/applicationLayer/createUser';
-import {authenticateUser} from '../user/applicationLayer/authenticateUser';
+import { createUser } from "../user/applicationLayer/createUser";
+//Mis métodos toDo del Application Layer del toDo:
 //****//
-
-
-
+import { addTodoApp } from "./todoListHexagonal/applicationLayer/addTodoApp";
+import { deleteTodoApp } from "./todoListHexagonal/applicationLayer/deleteTodoApp";
+import { showTodoApp } from "./todoListHexagonal/applicationLayer/showTodoApp";
+import { updateTodoApp } from "./todoListHexagonal/applicationLayer/updateTodoApp";
+//****//
 
 export class Server {
 	private readonly express: express.Express;
@@ -37,14 +29,13 @@ export class Server {
 		this.express.use(urlencoded({ extended: true }));
 	}
 
-	ejecutarHexagono(){
-		this.express.post('/register',createUser)
-	
-		this.express.get('/', authenticateUser, showTodoApp);
-		this.express.post('/', authenticateUser, addTodoApp);
-		this.express.put('/', authenticateUser, updateTodoApp);
-		this.express.delete('/', authenticateUser, deleteTodoApp);
+	ejecutarHexagono(): void {
+		this.express.post("/register", createUser);
 
+		this.express.get("/", authenticateUser, showTodoApp);
+		this.express.post("/", authenticateUser, addTodoApp);
+		this.express.put("/", authenticateUser, updateTodoApp);
+		this.express.delete("/", authenticateUser, deleteTodoApp);
 	}
 
 	async listen(): Promise<void> {

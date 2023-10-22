@@ -1,6 +1,5 @@
 import { Server } from "./Server";
 
-
 export class App {
 	server?: Server;
 
@@ -12,4 +11,3 @@ export class App {
 		this.server.ejecutarHexagono();
 	}
 }
-
