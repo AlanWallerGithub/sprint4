@@ -1,6 +1,9 @@
-# Sprint 4
+# Sprint 4 - Segunda entrega
 
 En este Sprint he usado NODE.JS v20.8.0.
+
+Esta es la segunda entrega. He creado una estructura de puertos y adaptadores para separar las dependencias de Express del business logic, que en la primera entrega no estaba separado.
+
 
 He aplicado la arquitectura hexagonal a mi toDo list en la carpeta *"./src/backend/todoListHexagonal"*.
 
