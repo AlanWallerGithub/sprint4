@@ -1,20 +1,5 @@
 import { todoList } from "../domain/toDo";
 
-// type bodyType = {
-// 	username: string;
-// 	task: string;
-// 	completado: boolean;
-// };
-
-// interface requestInterface {
-// 	body: bodyType;
-// }
-
-// interface responseInterface {
-// 	send: Function;
-// 	end: Function;
-// }
-
 export const addTodoPort = (
 	taskArgumento: string,
 	completadoArgumento: boolean
