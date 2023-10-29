@@ -17,7 +17,7 @@ import { todoList } from "../domain/toDo";
 export const showTodoPort = (): string => {
 	if (todoList.length > 0) {
 		return JSON.stringify(todoList, undefined, 5);
-	} else {
-		return "La toDo list está vacía";
 	}
+
+	return "La toDo list está vacía";
 };

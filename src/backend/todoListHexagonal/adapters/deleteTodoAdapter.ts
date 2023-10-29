@@ -1,14 +1,11 @@
-import { deleteTodoPort } from "../businessLogicHexagon/ports/deleteTodoPort";
 import { Request, Response } from "express";
 
+import { deleteTodoPort } from "../businessLogicHexagon/ports/deleteTodoPort";
 
-export const deleteTodoAdapter = (req: Request, res: Response) =>{
+export const deleteTodoAdapter = (req: Request, res: Response): void => {
+	const task: string = req.body.task;
 
-    let task = req.body.task;
- 
+	const resultado = deleteTodoPort(task);
 
-    let resultado = deleteTodoPort(task);
-
-    res.end(resultado);
-
-}
+	res.end(resultado);
+};

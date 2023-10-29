@@ -1,14 +1,12 @@
-import { addTodoPort } from "../businessLogicHexagon/ports/addTodoPort";
 import { Request, Response } from "express";
 
+import { addTodoPort } from "../businessLogicHexagon/ports/addTodoPort";
 
-export const addTodoAdapter = (req: Request, res: Response) =>{
+export const addTodoAdapter = (req: Request, res: Response): void => {
+	const task: string = req.body.task;
+	const completado: boolean = req.body.completado;
 
-    let task = req.body.task;
-    let completado = req.body.completado;
+	const resultado = addTodoPort(task, completado);
 
-    let resultado = addTodoPort(task,completado);
-
-    res.end(resultado);
-
-}
+	res.end(resultado);
+};

@@ -15,7 +15,10 @@ import { todoList } from "../domain/toDo";
 // 	end: Function;
 // }
 
-export const addTodoPort = (taskArgumento: string, completadoArgumento: boolean): string | undefined => {
+export const addTodoPort = (
+	taskArgumento: string,
+	completadoArgumento: boolean
+): string | undefined => {
 	if (todoList.length > 0) {
 		let salirDelLoop = false;
 
@@ -24,12 +27,15 @@ export const addTodoPort = (taskArgumento: string, completadoArgumento: boolean)
 		while (!salirDelLoop && i < todoList.length) {
 			if (todoList[i].task === taskArgumento) {
 				salirDelLoop = true;
+
 				return "Esta tarea ya existe en la lista";
-			} else if (i === todoList.length - 1) {
+			}
+			if (i === todoList.length - 1) {
 				salirDelLoop = true;
 				const nuevoTodo = { task: taskArgumento, completado: completadoArgumento };
 
 				todoList.push(nuevoTodo);
+
 				return JSON.stringify(todoList, undefined, 5);
 			}
 			i++;
@@ -40,6 +46,7 @@ export const addTodoPort = (taskArgumento: string, completadoArgumento: boolean)
 		const nuevoTodo = { task: taskArgumento, completado: completadoArgumento };
 
 		todoList.push(nuevoTodo);
+
 		return JSON.stringify(todoList, undefined, 5);
 	}
 };

@@ -3,17 +3,17 @@ import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 
-import { authenticateUser } from "../user/applicationLayer/authenticateUser";
+import { authenticateUserAdapter } from "../user/applicationLayer/authenticateUserAdapter";
 //****//
 // Mis métodos de gestión de usuarios del Application Layer del usuario:
 //****//
-import { createUser } from "../user/applicationLayer/createUser";
+import { createUserAdapter } from "../user/applicationLayer/createUserAdapter";
 //Mis métodos toDo del Application Layer del toDo:
 //****//
 import { addTodoAdapter } from "./todoListHexagonal/adapters/addTodoAdapter";
-import { updateTodoAdapter } from "./todoListHexagonal/adapters/updateTodoAdapter";
 import { deleteTodoAdapter } from "./todoListHexagonal/adapters/deleteTodoAdapter";
 import { showTodoAdapter } from "./todoListHexagonal/adapters/showTodoAdapter";
+import { updateTodoAdapter } from "./todoListHexagonal/adapters/updateTodoAdapter";
 //****//
 
 export class Server {
@@ -30,12 +30,12 @@ export class Server {
 	}
 
 	ejecutarHexagono(): void {
-		this.express.post("/register", createUser);
+		this.express.post("/register", createUserAdapter);
 
-		this.express.get("/", authenticateUser, showTodoAdapter);
-		this.express.post("/", authenticateUser, addTodoAdapter);
-		this.express.put("/", authenticateUser, updateTodoAdapter);
-		this.express.delete("/", authenticateUser, deleteTodoAdapter);
+		this.express.get("/", authenticateUserAdapter, showTodoAdapter);
+		this.express.post("/", authenticateUserAdapter, addTodoAdapter);
+		this.express.put("/", authenticateUserAdapter, updateTodoAdapter);
+		this.express.delete("/", authenticateUserAdapter, deleteTodoAdapter);
 	}
 
 	async listen(): Promise<void> {

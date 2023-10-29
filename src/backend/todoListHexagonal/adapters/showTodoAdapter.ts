@@ -1,12 +1,9 @@
-import { showTodoPort } from "../businessLogicHexagon/ports/showTodoPort";
 import { Request, Response } from "express";
 
+import { showTodoPort } from "../businessLogicHexagon/ports/showTodoPort";
 
-export const showTodoAdapter = (req: Request, res: Response) =>{
- 
+export const showTodoAdapter = (req: Request, res: Response): void => {
+	const resultado = showTodoPort();
 
-    let resultado = showTodoPort();
-
-    res.end(resultado);
-
-}
+	res.end(resultado);
+};

@@ -7,8 +7,8 @@ import { addTodoAdapter } from "../../../src/backend/todoListHexagonal/adapters/
 import { updateTodoAdapter } from "../../../src/backend/todoListHexagonal/adapters/updateTodoAdapter";
 
 // El middleware Authenticate User
-import { authenticateUser } from "../../../src/user/applicationLayer/authenticateUser";
-import { createUser } from "../../../src/user/applicationLayer/createUser";
+import { authenticateUserAdapter } from "../../../src/user/applicationLayer/authenticateUserAdapter";
+import { createUserAdapter } from "../../../src/user/applicationLayer/createUserAdapter";
 //Dependencias externas
 
 import supertest from 'supertest';
@@ -32,28 +32,28 @@ app.use(urlencoded({ extended: true }));
 
         test("Sin registrar usario, todos los ROUTES deberían dar 401", async () => {
 		
-            app.get('/', authenticateUser, showTodoAdapter)
+            app.get('/', authenticateUserAdapter, showTodoAdapter)
               
               await supertest(app)
                 .get('/')
                 .send({"username": "papolito"})
                 .expect(401)
 
-                app.post('/', authenticateUser, addTodoAdapter)
+                app.post('/', authenticateUserAdapter, addTodoAdapter)
               
                 await supertest(app)
                   .post('/')
                   .send({"username": "papolito","task": "parranda","completado": false})
                   .expect(401)
 
-                  app.put('/', authenticateUser, updateTodoAdapter)
+                  app.put('/', authenticateUserAdapter, updateTodoAdapter)
               
                   await supertest(app)
                     .put('/')
                     .send({"username": "papolito","task": "parranda"})
                     .expect(401)
 
-                    app.delete('/', authenticateUser, deleteTodoAdapter)
+                    app.delete('/', authenticateUserAdapter, deleteTodoAdapter)
               
                 await supertest(app)
                   .delete('/')
@@ -67,7 +67,7 @@ app.use(urlencoded({ extended: true }));
 
           //Creamos usuario
 
-            app.post('/register',createUser)
+            app.post('/register',createUserAdapter)
 
             await supertest(app)
             .post('/register')
@@ -76,28 +76,28 @@ app.use(urlencoded({ extended: true }));
 
             //Routes test
           
-            app.get('/', authenticateUser, showTodoAdapter)
+            app.get('/', authenticateUserAdapter, showTodoAdapter)
               
             await supertest(app)
               .get('/')
               .send({"username": "papolito"})
               .expect(200)
 
-              app.post('/', authenticateUser, addTodoAdapter)
+              app.post('/', authenticateUserAdapter, addTodoAdapter)
             
               await supertest(app)
                 .post('/')
                 .send({"username": "papolito","task": "parranda","completado": false})
                 .expect(200)
 
-                app.put('/', authenticateUser, updateTodoAdapter)
+                app.put('/', authenticateUserAdapter, updateTodoAdapter)
             
                 await supertest(app)
                   .put('/')
                   .send({"username": "papolito","task": "parranda"})
                   .expect(200)
 
-                  app.delete('/', authenticateUser, deleteTodoAdapter)
+                  app.delete('/', authenticateUserAdapter, deleteTodoAdapter)
             
               await supertest(app)
                 .delete('/')
@@ -111,7 +111,7 @@ app.use(urlencoded({ extended: true }));
 
 
         test("Antes de hacer POST, GET nos avisa de que está vacío el toDo list", async () => {
-          app.get('/', authenticateUser, showTodoAdapter)
+          app.get('/', authenticateUserAdapter, showTodoAdapter)
 
            let response = await supertest(app).get('/').send({"username": "papolito"})
         
@@ -121,7 +121,7 @@ app.use(urlencoded({ extended: true }));
 
         test("Ahora, hacemos POST de alguna tarea, y el toDo list estará lleno", async ()=>{
 
-          app.post('/', authenticateUser, addTodoAdapter)
+          app.post('/', authenticateUserAdapter, addTodoAdapter)
             
           await supertest(app)
             .post('/')
@@ -130,14 +130,14 @@ app.use(urlencoded({ extended: true }));
 
             //Podemos añadir más de una tarea
 
-            app.post('/', authenticateUser, addTodoAdapter)
+            app.post('/', authenticateUserAdapter, addTodoAdapter)
             
             await supertest(app)
               .post('/')
               .send({"username": "papolito","task": "comprar la cena","completado": false})
               .expect(200)
             
-            app.get('/', authenticateUser, addTodoAdapter)
+            app.get('/', authenticateUserAdapter, addTodoAdapter)
 
             let response = await supertest(app)
             .get("/")
@@ -149,7 +149,7 @@ app.use(urlencoded({ extended: true }));
 
         test("Si hacemos POST de lo mismo dos veces, no lo aceptará.", async()=>{
 
-          app.post('/', authenticateUser, addTodoAdapter)
+          app.post('/', authenticateUserAdapter, addTodoAdapter)
             
           let response = await supertest(app)
             .post('/')
@@ -163,7 +163,7 @@ app.use(urlencoded({ extended: true }));
 
         test("Si hacemos PUT, pasará a estar COMPLETADA la tarea",async ()=>{
           
-          app.put('/', authenticateUser, addTodoAdapter)
+          app.put('/', authenticateUserAdapter, addTodoAdapter)
             
           let response = await supertest(app)
             .put('/')
@@ -177,7 +177,7 @@ app.use(urlencoded({ extended: true }));
 
         test("Si hacemos PUT sobre la misma tarea, no lo aceptará",async ()=>{
 
-          app.put('/', authenticateUser, addTodoAdapter)
+          app.put('/', authenticateUserAdapter, addTodoAdapter)
             
           let response = await supertest(app)
             .put('/')
@@ -190,7 +190,7 @@ app.use(urlencoded({ extended: true }));
         })
     
         test("usamos DELETE para eliminar una tarea",async()=>{
-          app.delete('/', authenticateUser, addTodoAdapter)
+          app.delete('/', authenticateUserAdapter, addTodoAdapter)
             
           let response = await supertest(app)
             .delete('/')
@@ -205,7 +205,7 @@ app.use(urlencoded({ extended: true }));
 
         test("Si hacemos PUT sobre una tarea que no existe, nos lo dirá",async ()=>{
 
-          app.put('/', authenticateUser, addTodoAdapter)
+          app.put('/', authenticateUserAdapter, addTodoAdapter)
             
           let response = await supertest(app)
             .put('/')
@@ -219,7 +219,7 @@ app.use(urlencoded({ extended: true }));
 
         test("Si hacemos DELETE de una tarea que no existe, nos avisará", async()=>{
 
-          app.delete('/', authenticateUser, addTodoAdapter)
+          app.delete('/', authenticateUserAdapter, addTodoAdapter)
             
           let response = await supertest(app)
             .delete('/')
@@ -232,14 +232,14 @@ app.use(urlencoded({ extended: true }));
         })
 
         test("Si hacemos DELETE de todas las tareas, nos dirá que la lista está vacía",async()=>{
-          app.delete('/', authenticateUser, addTodoAdapter)
+          app.delete('/', authenticateUserAdapter, addTodoAdapter)
             
           await supertest(app)
             .delete('/')
             .send({"username": "papolito","task": "comprar la cena"})
             .expect(200)
 
-            app.delete('/', authenticateUser, addTodoAdapter)
+            app.delete('/', authenticateUserAdapter, addTodoAdapter)
             
           let response = await supertest(app)
             .delete('/')
@@ -253,7 +253,7 @@ app.use(urlencoded({ extended: true }));
 
         test("si intentamos hacer PUT cuando está vacía la lista, nos lo dice",async()=>{
 
-          app.put('/', authenticateUser, addTodoAdapter)
+          app.put('/', authenticateUserAdapter, addTodoAdapter)
             
           let response = await supertest(app)
             .put('/')
