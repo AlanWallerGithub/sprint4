@@ -30,15 +30,12 @@ jobs:
 
       - name: 🏠 Build
         run: npm run build
-
         
-        # Lint no permite usar el tipo "Function".
-        
-      # - name: 💅 Lint
-      #   run: npm run lint
+      - name: 💅 Lint
+        run: npm run lint
 
-      # - name: 💇‍♀️ Lint --fix
-      #   run: npm run lint:fix
+      - name: 💇‍♀️ Lint --fix
+        run: npm run lint:fix
 
       - name: ✅ Test
         run: npm run test

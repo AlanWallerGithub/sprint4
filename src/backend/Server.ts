@@ -10,10 +10,10 @@ import { authenticateUser } from "../user/applicationLayer/authenticateUser";
 import { createUser } from "../user/applicationLayer/createUser";
 //Mis métodos toDo del Application Layer del toDo:
 //****//
-import { addTodoApp } from "./todoListHexagonal/applicationLayer/addTodoApp";
-import { deleteTodoApp } from "./todoListHexagonal/applicationLayer/deleteTodoApp";
-import { showTodoApp } from "./todoListHexagonal/applicationLayer/showTodoApp";
-import { updateTodoApp } from "./todoListHexagonal/applicationLayer/updateTodoApp";
+import { addTodoAdapter } from "./todoListHexagonal/adapters/addTodoAdapter";
+import { updateTodoAdapter } from "./todoListHexagonal/adapters/updateTodoAdapter";
+import { deleteTodoAdapter } from "./todoListHexagonal/adapters/deleteTodoAdapter";
+import { showTodoAdapter } from "./todoListHexagonal/adapters/showTodoAdapter";
 //****//
 
 export class Server {
@@ -32,10 +32,10 @@ export class Server {
 	ejecutarHexagono(): void {
 		this.express.post("/register", createUser);
 
-		this.express.get("/", authenticateUser, showTodoApp);
-		this.express.post("/", authenticateUser, addTodoApp);
-		this.express.put("/", authenticateUser, updateTodoApp);
-		this.express.delete("/", authenticateUser, deleteTodoApp);
+		this.express.get("/", authenticateUser, showTodoAdapter);
+		this.express.post("/", authenticateUser, addTodoAdapter);
+		this.express.put("/", authenticateUser, updateTodoAdapter);
+		this.express.delete("/", authenticateUser, deleteTodoAdapter);
 	}
 
 	async listen(): Promise<void> {
