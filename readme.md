@@ -43,23 +43,23 @@ En él, los endpoints se testean así:
 
 ### POST para registrar usuario:
 
-Este POST se llama al endpoint “/register” de la dirección, en este caso “localhost:8000”. El body debe contener un nombre de usuario, en formato JSON, en este caso he escogido {"username": "papolito"}.
+Este POST se llama al endpoint “/register” de la dirección, en este caso “localhost:8000”. El body debe contener un nombre de usuario, en formato JSON, en este caso he escogido {"username": "testName"}.
 
 ### GET:
 
-GET se llama directamente al root de la dirección, en este caso “localhost:8000”. El body del GET debe contener el nombre de usuario que se haya registrado, en formato JSON, en este caso {"username": "papolito"}.
+GET se llama al endpoint “/:username” de la dirección, en este caso “localhost:8000”. Por ejemplo, "localhost8000/testName".
 
 ### POST:
 
-POST se llama directamente al root de la dirección, en este caso “localhost:8000”. El body del POST debe contener el nombre de usuario que se haya registrado, la tarea a añadir, y su estado de completado, en formato JSON, en este caso {"username": "papolito","task": "limpiar la casa","completado": false}.
+POST se llama al endpoint “/:username” de la dirección, en este caso “localhost:8000”. El body del POST debe contener la tarea a añadir, y su estado de completado, en formato JSON, en este caso {"task": "limpiar la casa","completado": false}. Por ejemplo, "localhost8000/testName".
 
 ### PUT:
 
-PUT se usa para modificar el estado de completado. Se llama directamente al root de la dirección, en este caso “localhost:8000”. El body del PUT debe contener el nombre de usuario que se haya registrado y la tarea a completar, en formato JSON, en este caso {"username": "papolito","task": "limpiar la casa" }.
+PUT se usa para modificar el estado de completado. Se llama al endpoint “/:username” de la dirección, en este caso “localhost:8000”. El body del PUT debe contener la tarea a completar, en formato JSON, en este caso {"task": "limpiar la casa" }. Por ejemplo, "localhost8000/testName".
 
 ### DELETE:
 
-DELETE se llama directamente al root de la dirección, en este caso “localhost:8000”. El body del DELETE debe contener el nombre de usuario que se haya registrado y la tarea a eliminar, en formato JSON, en este caso {"username": "papolito","task": "limpiar la casa" }.
+DELETE se llama al endpoint “/:username” de la dirección, en este caso “localhost:8000”. El body del DELETE debe contener la tarea a eliminar, en formato JSON, en este caso {"task": "limpiar la casa" }. Por ejemplo, "localhost8000/testName".
 
 ****************
 
