@@ -32,10 +32,10 @@ export class Server {
 	ejecutarHexagono(): void {
 		this.express.post("/register", createUserAdapter);
 
-		this.express.get("/", authenticateUserAdapter, showTodoAdapter);
-		this.express.post("/", authenticateUserAdapter, addTodoAdapter);
-		this.express.put("/", authenticateUserAdapter, updateTodoAdapter);
-		this.express.delete("/", authenticateUserAdapter, deleteTodoAdapter);
+		this.express.get("/:username", authenticateUserAdapter, showTodoAdapter);
+		this.express.post("/:username", authenticateUserAdapter, addTodoAdapter);
+		this.express.put("/:username", authenticateUserAdapter, updateTodoAdapter);
+		this.express.delete("/:username", authenticateUserAdapter, deleteTodoAdapter);
 	}
 
 	async listen(): Promise<void> {

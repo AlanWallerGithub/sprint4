@@ -11,12 +11,21 @@
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"testName\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:3000",
+					"raw": "localhost:8000/testName",
 					"host": [
 						"localhost"
 					],
-					"port": "3000"
+					"port": "8000/testName"
 				}
 			},
 			"response": []
@@ -24,16 +33,48 @@
 		{
 			"name": "POST sprint4",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"testName\",\"task\": \"limpiar la casa\",\"completado\": false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/testName",
+					"host": [
+						"localhost"
+					],
+					"port": "8000/testName"
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "REGISTER USER",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"testName\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8000/register"
+				}
 			},
 			"response": []
 		},
@@ -44,7 +85,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"task\": \"colada\"}",
+					"raw": "{\"username\": \"testName\",\"task\": \"limpiar la casa\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -52,11 +93,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000",
+					"raw": "localhost:8000/testName",
 					"host": [
 						"localhost"
 					],
-					"port": "3000"
+					"port": "8000/testName"
 				}
 			},
 			"response": []
@@ -68,7 +109,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"task\": \"colada\"}",
+					"raw": "{\"username\": \"testName\",\"task\": \"limpiar la casa\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -76,11 +117,11 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000",
+					"raw": "localhost:8000/testName",
 					"host": [
 						"localhost"
 					],
-					"port": "3000"
+					"port": "8000/testName"
 				}
 			},
 			"response": []
