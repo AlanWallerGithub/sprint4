@@ -11,15 +11,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\"username\": \"testName\"}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "localhost:8000/testName",
 					"host": [
@@ -37,7 +28,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"username\": \"testName\",\"task\": \"limpiar la casa\",\"completado\": false}",
+					"raw": "{\"task\": \"limpiar la casa\",\"completado\": false}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -85,7 +76,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"username\": \"testName\",\"task\": \"limpiar la casa\"}",
+					"raw": "{\"task\": \"limpiar la casa\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -109,7 +100,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"username\": \"testName\",\"task\": \"limpiar la casa\"}",
+					"raw": "{\"task\": \"limpiar la casa\"}",
 					"options": {
 						"raw": {
 							"language": "json"

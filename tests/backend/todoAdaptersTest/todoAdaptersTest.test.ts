@@ -43,21 +43,21 @@ app.use(urlencoded({ extended: true }));
               
                 await supertest(app)
                   .post('/')
-                  .send({"username": "papolito","task": "parranda","completado": false})
+                  .send({"task": "parranda","completado": false})
                   .expect(401)
 
                   app.put('/', authenticateUserAdapter, updateTodoAdapter)
               
                   await supertest(app)
                     .put('/')
-                    .send({"username": "papolito","task": "parranda"})
+                    .send({"task": "parranda"})
                     .expect(401)
 
                     app.delete('/', authenticateUserAdapter, deleteTodoAdapter)
               
                 await supertest(app)
                   .delete('/')
-                  .send({"username": "papolito","task": "parranda"})
+                  .send({"task": "parranda"})
                   .expect(401)
             
                 
@@ -87,21 +87,21 @@ app.use(urlencoded({ extended: true }));
             
               await supertest(app)
                 .post('/papolito')
-                .send({"username": "papolito","task": "parranda","completado": false})
+                .send({"task": "parranda","completado": false})
                 .expect(200)
 
                 app.put('/:username', authenticateUserAdapter, updateTodoAdapter)
             
                 await supertest(app)
                   .put('/papolito')
-                  .send({"username": "papolito","task": "parranda"})
+                  .send({"task": "parranda"})
                   .expect(200)
 
                   app.delete('/:username', authenticateUserAdapter, deleteTodoAdapter)
             
               await supertest(app)
                 .delete('/papolito')
-                .send({"username": "papolito","task": "parranda"})
+                .send({"task": "parranda"})
                 .expect(200)
 
                 //Este DELETE ha borrado todas las tareas. Ahora el toDo list está vacío
@@ -125,7 +125,7 @@ app.use(urlencoded({ extended: true }));
             
           await supertest(app)
             .post('/papolito')
-            .send({"username": "papolito","task": "hacer la colada","completado": false})
+            .send({"task": "hacer la colada","completado": false})
             .expect(200)
 
             //Podemos añadir más de una tarea
@@ -134,7 +134,7 @@ app.use(urlencoded({ extended: true }));
             
             await supertest(app)
               .post('/papolito')
-              .send({"username": "papolito","task": "comprar la cena","completado": false})
+              .send({"task": "comprar la cena","completado": false})
               .expect(200)
             
             app.get('/:username', authenticateUserAdapter, addTodoAdapter)
@@ -153,7 +153,7 @@ app.use(urlencoded({ extended: true }));
             
           let response = await supertest(app)
             .post('/papolito')
-            .send({"username": "papolito","task": "hacer la colada","completado": false})
+            .send({"task": "hacer la colada","completado": false})
             .expect(200)
 
         
@@ -167,7 +167,7 @@ app.use(urlencoded({ extended: true }));
             
           let response = await supertest(app)
             .put('/papolito')
-            .send({"username": "papolito","task": "hacer la colada"})
+            .send({"task": "hacer la colada"})
             .expect(200)
 
         //Ahora "hacer la colada" está TRUE completado
@@ -181,7 +181,7 @@ app.use(urlencoded({ extended: true }));
             
           let response = await supertest(app)
             .put('/papolito')
-            .send({"username": "papolito","task": "hacer la colada"})
+            .send({"task": "hacer la colada"})
             .expect(200)
 
         
@@ -194,7 +194,7 @@ app.use(urlencoded({ extended: true }));
             
           let response = await supertest(app)
             .delete('/papolito')
-            .send({"username": "papolito","task": "hacer la colada"})
+            .send({"task": "hacer la colada"})
             .expect(200)
 
         
@@ -209,7 +209,7 @@ app.use(urlencoded({ extended: true }));
             
           let response = await supertest(app)
             .put('/papolito')
-            .send({"username": "papolito","task": "hacer la colada"})
+            .send({"task": "hacer la colada"})
             .expect(200)
         // "Hacer la colada" ya no existe
         
@@ -223,7 +223,7 @@ app.use(urlencoded({ extended: true }));
             
           let response = await supertest(app)
             .delete('/papolito')
-            .send({"username": "papolito","task": "hacer la colada"})
+            .send({"task": "hacer la colada"})
             .expect(200)
 
         
@@ -236,14 +236,14 @@ app.use(urlencoded({ extended: true }));
             
           await supertest(app)
             .delete('/papolito')
-            .send({"username": "papolito","task": "comprar la cena"})
+            .send({"task": "comprar la cena"})
             .expect(200)
 
             app.delete('/:username', authenticateUserAdapter, addTodoAdapter)
             
           let response = await supertest(app)
             .delete('/papolito')
-            .send({"username": "papolito","task": "comprar la cena"})
+            .send({"task": "comprar la cena"})
             .expect(200)
 
         
@@ -257,7 +257,7 @@ app.use(urlencoded({ extended: true }));
             
           let response = await supertest(app)
             .put('/papolito')
-            .send({"username": "papolito","task": "comprar la cena"})
+            .send({"task": "comprar la cena"})
             .expect(200)
        
         
